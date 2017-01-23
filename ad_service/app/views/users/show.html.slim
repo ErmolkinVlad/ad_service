@@ -1,0 +1,12 @@
+= @user.email
+= link_to "New advert", new_user_advert_path(@user)
+ 
+.col-md-3
+  ul.widget-products
+    - @adverts.each do |advert|
+      li
+        a
+          span.product.clearfix
+            span.name = advert.title
+            span.price 
+              i.fa.fa-money = advert.price

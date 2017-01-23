@@ -1,0 +1,12 @@
+h1 New Article
+= simple_form_for([@user, @user.adverts.build]) do |f|
+  p
+    = f.input :title
+  p
+    = f.input :body
+  p
+    = f.input :price
+  p
+    = f.association :category, prompt: "Choose a Category"
+  p
+    = f.submit

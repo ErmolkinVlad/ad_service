@@ -1,0 +1,10 @@
+.col-md-3
+  ul.widget-products
+    - @adverts.each do |advert|
+      li
+        a
+          span.product.clearfix
+            span.name = advert.title
+            span.price 
+              i.fa.fa-money = advert.price
+        span = User.find(advert.user_id).email
