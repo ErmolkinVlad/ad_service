@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+rolify
+
 has_many :adverts
 
   # Include default devise modules. Others available are:
