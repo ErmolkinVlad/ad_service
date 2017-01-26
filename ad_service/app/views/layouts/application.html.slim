@@ -12,7 +12,6 @@ html
         .navbar-header
           button.navbar-toggle.collapsed aria-expanded="false" data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" 
           a.navbar-brand href="#{root_path}"  Adverts
-
         #bs-example-navbar-collapse-1.collapse.navbar-collapse
           ul.nav.navbar-nav.navbar-right
             - if user_signed_in?
@@ -24,5 +23,5 @@ html
               li
                 = link_to 'Log In', new_user_session_path
               li
-                = link_to 'Sign In', new_user_registration_path         
+                = link_to 'Sign Up', new_user_registration_path         
     = yield

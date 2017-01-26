@@ -1,14 +1,15 @@
 Rails.application.routes.draw do
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-get 'home/index'
+  get 'home/index'
 
-get 'adverts', to: redirect('home/index')
+  # get 'admin'
 
-resources :users do
-  resources :adverts
-end
+  get 'adverts', to: redirect('home/index')
 
-
-root 'home#index'
+  resources :users do
+    resources :adverts
+  end
+  
+  root 'home#index'
 end
