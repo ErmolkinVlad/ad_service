@@ -1,5 +1,5 @@
 h1 New Article
-= simple_form_for([@user, @user.adverts.build]) do |f|
+= simple_form_for([@user, @user.adverts.build], html: { multopart: true }) do |f|
   p
     = f.input :title
   p
@@ -8,5 +8,10 @@ h1 New Article
     = f.input :price
   p
     = f.association :category, prompt: "Choose a Category"
+
+  = f.simple_fields_for :images do |p|
+  p
+    = f.file_field :body, multiple: true, name: "images[body][]"
+
   p
     = f.submit

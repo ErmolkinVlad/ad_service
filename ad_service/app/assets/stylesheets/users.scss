@@ -1,4 +1,4 @@
-// Place all the styles related to the users controller here.
+/*// Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
@@ -27,7 +27,6 @@ time,mark,audio,video{
     font:inherit;
     vertical-align:baseline;
 }
-/* HTML5 display-role reset for older browsers */
 article,aside,details,figcaption,figure,
 footer,header,hgroup,menu,nav,section{
     display:block;
@@ -46,12 +45,7 @@ q:before,q:after{
     content:’’;
     content:none;
 }
-/* remember to define visible focus styles! 
-:focus{
-    outline:?????;
-} */
 
-/* remember to highlight inserts somehow! */
 ins{
     text-decoration:none;
 }
@@ -64,9 +58,6 @@ table{
     border-spacing:0;
 }
 
-/*------------------------------------*\
-    $MAIN
-\*------------------------------------*/
 
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,300,500);
 
@@ -78,7 +69,6 @@ body {
   background-color: #f6f6f6;
 }
 
-/* Typography */
 
 h1 {
   font-size: 28px;
@@ -96,7 +86,6 @@ h6 {
   font-size: 14px;
 }
 
-/* Product Layout */
 
 .product-filter {
   display: flex;
@@ -187,26 +176,4 @@ label {
   }
   
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+*/

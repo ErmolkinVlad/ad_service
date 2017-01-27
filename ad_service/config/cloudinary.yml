@@ -1,0 +1,18 @@
+development:
+  cloud_name: dndzsw2i9
+  api_key: '993541981624631'
+  api_secret: Fcsga8g1lXpyg3B3UuaUT1KmihE
+  enhance_image_tag: true
+  static_image_support: false
+production:
+  cloud_name: dndzsw2i9
+  api_key: '993541981624631'
+  api_secret: Fcsga8g1lXpyg3B3UuaUT1KmihE
+  enhance_image_tag: true
+  static_image_support: true
+test:
+  cloud_name: dndzsw2i9
+  api_key: '993541981624631'
+  api_secret: Fcsga8g1lXpyg3B3UuaUT1KmihE
+  enhance_image_tag: true
+  static_image_support: false

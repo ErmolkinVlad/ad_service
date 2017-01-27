@@ -14,10 +14,11 @@ nav.product-filter
 section.products
   - @adverts.each do |advert|
     .product-card
-      .product-image
-        img src="https://cdn.shopify.com/s/files/1/0938/8938/products/10231100205_1_1315x1800_300_CMYK_1024x1024.jpeg?v=1445623369" /
-      .product-info
-        h5 = advert.title
-        h6 = advert.price
-        h5 = Category.find(advert.category_id).title
-    
+      a href="#{ user_advert_path(@user, advert) }"
+        .product-image
+          img src="https://cdn.shopify.com/s/files/1/0938/8938/products/10231100205_1_1315x1800_300_CMYK_1024x1024.jpeg?v=1445623369" /
+        .product-info
+          h5 = advert.title
+          h6 = advert.price
+          h5 = Category.find(advert.category_id).title
+          h5 = User.find(advert.user_id).email

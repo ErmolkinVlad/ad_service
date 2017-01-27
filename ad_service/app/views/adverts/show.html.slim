@@ -1,0 +1,5 @@
+h1 = @advert.title
+h2 = @advert.body
+- @advert.images.each do |image|
+  p
+    = image_tag(image.body_url(:standard), :class => "brd")
