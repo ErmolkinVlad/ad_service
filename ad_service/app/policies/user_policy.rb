@@ -9,5 +9,4 @@ class UserPolicy
   def show?
     @user == @record || @user.admin?
   end
-
 end

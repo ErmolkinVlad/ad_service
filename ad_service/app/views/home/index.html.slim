@@ -1,21 +1,18 @@
-nav.product-filter
-  .sort
-    .collection-sort
-      label Filter by:
-      select
-        option value="/"  All
-    .collection-sort
-      label Sort by:
-      select
-        option value="/"  Date, old to new
-section.products
-  - @adverts.each do |advert|
-    .product-card
-      a href="#{ user_advert_path(User.find(advert.user_id), advert) }"
-        .product-image
-          img src="https://cdn.shopify.com/s/files/1/0938/8938/products/10231100205_1_1315x1800_300_CMYK_1024x1024.jpeg?v=1445623369" /
-        .product-info
-          h5 = advert.title
-          h6 = advert.price
-          h5 = Category.find(advert.category_id).title
-          h5 = User.find(advert.user_id).email
+/ nav.product-filter
+/   .sort
+/     .collection-sort
+/       label Filter by:
+/       select
+/         option value="/"  All
+/     .collection-sort
+/       label Sort by:
+/       select
+/         option value="/"  Date, old to new
+/ section.products
+
+.container
+  ul.list-group
+    - @adverts.each do |advert|
+      li
+        = render advert
+    

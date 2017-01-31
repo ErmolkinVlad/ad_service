@@ -1,5 +1,6 @@
-h1 = @advert.title
-h2 = @advert.body
+= advert_avatar(@advert)
+h1.inline-element.title = @advert.title
+h3 = @advert.body
+h3 = @advert.status
 - @advert.images.each do |image|
-  p
-    = image_tag(image.body_url(:standard), :class => "brd")
+  = image_tag(image.body_url(:standard), :class => "brd")

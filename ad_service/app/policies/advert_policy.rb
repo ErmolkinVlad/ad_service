@@ -1,6 +1,6 @@
 class AdvertPolicy
   attr_reader :user, :advert
-  
+
   def initialize(user, advert)
     @user = user
     @advert = advert
@@ -19,7 +19,7 @@ class AdvertPolicy
   end
 
   def edit?
-    @user.admin? || @user.adverts.include?(@advert)
+    @user.admin? || @advert.user == @user
   end
 
   def update?
@@ -29,5 +29,4 @@ class AdvertPolicy
   def destroy?
     @user.admin? || @user.adverts.include?(@advert)
   end
-
 end

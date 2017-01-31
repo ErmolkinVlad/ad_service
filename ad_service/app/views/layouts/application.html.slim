@@ -6,22 +6,10 @@ html
     = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" /
+    script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" 
+    script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" 
+
   body
-    nav.navbar.navbar-default
-      .container-fluid
-        .navbar-header
-          button.navbar-toggle.collapsed aria-expanded="false" data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" 
-          a.navbar-brand href="#{root_path}"  Adverts
-        #bs-example-navbar-collapse-1.collapse.navbar-collapse
-          ul.nav.navbar-nav.navbar-right
-            - if user_signed_in?
-              li
-                = link_to 'Profile', user_path(current_user)
-              li
-                = link_to 'Log Out', destroy_user_session_path, :method => :delete
-            - else
-              li
-                = link_to 'Log In', new_user_session_path
-              li
-                = link_to 'Sign Up', new_user_registration_path         
+    = render "/layouts/navbar"
     = yield
