@@ -1,4 +1,5 @@
 = advert_avatar(@advert)
+= button_to 'Edit', edit_user_advert_path(@advert.user, @advert), method: :get, form_class: 'edit-form'
 h1.inline-element.title = @advert.title
 h3 = @advert.body
 h3 = @advert.status

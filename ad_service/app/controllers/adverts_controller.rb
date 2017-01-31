@@ -10,13 +10,12 @@ class AdvertsController < ApplicationController
 
   def new
     @advert = @user.adverts.build
-    @categories = Advert.categories
     authorize Advert
   end
 
   def edit
     @advert = Advert.find(params[:id])
-    @available_statuses = available_statuses(@advert)
+    @statuses = statuses_for_select
     authorize @advert
   end
 
@@ -25,6 +24,7 @@ class AdvertsController < ApplicationController
     respond_to do |format|
       if @advert.save
         create_images
+
         format.html { redirect_to @user, notice: 'Advert was succesfully created.' }
       else
         format.html { render action: 'new' }
@@ -34,22 +34,17 @@ class AdvertsController < ApplicationController
 
   def update
     @advert = Advert.find(params[:id])
-    @advert.fresh!
+    prev_status = @advert.status
     if @advert.update(advert_params) && @advert.valid?
+      @advert.refresh! if prev_status == advert_params[:status]
       redirect_to [@user, @advert]
     else
-      @available_statuses = available_statuses(@advert)
+      @statuses = statuses_for_select
       render action: 'edit'
     end
   end
 
   private
-
-  def available_statuses(advert)
-    result = [:archive] << advert.status
-    result << :moderation if advert.fresh? || advert.archive?
-    result
-  end
 
   def user
     @user = User.find(params[:user_id])
@@ -60,6 +55,14 @@ class AdvertsController < ApplicationController
     params[:images]['body'].each do |a|
       @advert.images.create!(body: a)
     end
+  end
+
+  def statuses_for_select
+    statuses = @advert.aasm.states(permitted: true).map(&:name)
+    statuses -= [:published, :canceled] unless @user.admin?
+    statuses -= [:recent]
+    statuses << @advert.status
+    statuses
   end
 
   def advert_params

@@ -19,11 +19,11 @@ ActiveRecord::Schema.define(version: 20170130185252) do
     t.string   "title"
     t.text     "body"
     t.float    "price"
-    t.integer  "status",     default: 0
     t.integer  "user_id"
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
     t.integer  "category",   default: 0
+    t.integer  "status",     default: 0
     t.index ["user_id"], name: "index_adverts_on_user_id", using: :btree
   end
 

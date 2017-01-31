@@ -6,14 +6,17 @@
   p
     = f.input :price
   p
-    = f.input :category, prompt: "Choose a Category", collection: Advert.categories.symbolize_keys.keys
+    = f.input :category, prompt: 'Choose a Category', collection: Advert.categories.symbolize_keys.keys
   - unless @advert.new_record?
     p 
-      = f.input :status, prompt: "Change status", collection: @available_statuses
+      | Current: #{@advert.status}
+      / = f.input :status, prompt: "Change status", collection: @statuses
+      /= collection_select(:advert, :status, @statuses, :to_s, :to_s, prompt: "Hello!!!")
+      = select(:advert, :status, @statuses)
   p
     = f.simple_fields_for :images do |p|
   p
-    = f.file_field :body, multiple: true, name: "images[body][]"
+    = f.file_field :body, multiple: true, name: 'images[body][]'
 
   p
     = f.submit
