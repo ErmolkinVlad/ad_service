@@ -4,8 +4,9 @@ h2.inline-element
 = link_to "New advert", new_user_advert_path(@user)
 
  
-.container
+.container.my-container
   ul.list-group
     - @adverts.each do |advert|
       li
         = render advert
+ 

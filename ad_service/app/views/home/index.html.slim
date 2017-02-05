@@ -1,18 +1,10 @@
-/ nav.product-filter
-/   .sort
-/     .collection-sort
-/       label Filter by:
-/       select
-/         option value="/"  All
-/     .collection-sort
-/       label Sort by:
-/       select
-/         option value="/"  Date, old to new
-/ section.products
+- if flash[:notice]
+  .notice= flash[:notice]
 
-.container
-  ul.list-group
-    - @adverts.each do |advert|
-      li
-        = render advert
-    
+.row
+  .container.my-container
+    ul.list-group
+      - @adverts.each do |advert|
+        li
+          = render advert
+      

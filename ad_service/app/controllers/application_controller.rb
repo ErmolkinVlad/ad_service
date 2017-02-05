@@ -1,14 +1,15 @@
 class ApplicationController < ActionController::Base
+  protect_from_forgery with: :exception
+
   before_filter :configure_permitted_parameters, if: :devise_controller?
   include Pundit
-  protect_from_forgery with: :exception
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   private
 
   def user_not_authorized
-    flash[:alert] = 'you are not authorizes to perform this action.'
+    flash[:notice] = 'you are not authorizes to perform this action.'
     redirect_to(request.referrer || root_path)
   end
 

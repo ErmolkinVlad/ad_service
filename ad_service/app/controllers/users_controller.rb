@@ -1,13 +1,8 @@
 class UsersController < ApplicationController
   def show
-    @user = User.find(params[:id])
+    @user = current_user
     @adverts = @user.adverts
     authorize @user
-    # if @user.show(user_params)
-    #   redirect_to @user
-    # else
-    #   redirect_to root_path
-    # end
   end
 
   def index
@@ -15,10 +10,8 @@ class UsersController < ApplicationController
   end
 
   def create
-    puts user_params
     @user = User.new(user_params)
     @user.avatar = params[:avatar]
-    puts @user
     @user.create
   end
 

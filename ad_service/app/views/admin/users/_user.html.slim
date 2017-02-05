@@ -1,0 +1,8 @@
+.panel.panel-default.user-panel-element
+  .panel-body
+    .panel-more1.inline-element
+      = user_avatar user
+    .panel-info
+      h3
+        = user.email
+    = button_to 'Show', admin_user_path(user), method: :get, form_class: 'show-form'

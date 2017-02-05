@@ -1,8 +1,7 @@
-class UserPolicy
+class Admin::UserPolicy
   attr_reader :user, :record
 
   def initialize(user, record)
-    @user = user
     @record = record
   end
 
@@ -10,8 +9,7 @@ class UserPolicy
     @user == @record || @user.admin?
   end
 
-  def admin_index?
+  def index?
     @user.admin?
   end
-
 end

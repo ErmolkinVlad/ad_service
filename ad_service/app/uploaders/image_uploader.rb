@@ -6,7 +6,7 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   version :standard do
     process eager: true
-    process resize_and_pad: [300, 300]
+    # process resize_and_pad: [300, 300]
   end
 
   version :thumbnail do

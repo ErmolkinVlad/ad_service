@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
   def index
-    @adverts = Advert.all
+    @adverts = Advert.where status: :published
   end
 end

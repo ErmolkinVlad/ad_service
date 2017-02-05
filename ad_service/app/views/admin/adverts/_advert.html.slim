@@ -1,0 +1,22 @@
+.panel.panel-default
+  .panel-body
+    .panel-more1.inline-element
+      = advert_avatar advert
+    .panel-info
+      strong 
+        = advert.title
+      p
+        = advert.price
+        br/
+        = advert.category
+      p
+        h3
+          = advert.status
+    = button_to 'Show', admin_advert_path(advert.user, advert), method: :get, form_class: 'show-form'
+
+    .button-group role='group' 
+      button.btn.btn-success#accept-button type='button' data-text='accept' 
+        | Accept
+      button.btn.btn-danger#reject-button type='button' data-text='reject'
+        | Reject
+      input#control-hidden-status type='hidden' data-id="#{advert.id}" data-controller='#{admin_advert_path(advert)}'

@@ -1,0 +1,25 @@
+.row
+  .col-md-2
+    ul.vertical
+      - @categories.each do |category|
+        li 
+          = category
+
+  .col-md-10
+    .button-group.switch-buttons role='group' 
+      a.btn.btn-primary.btn-lg.outline.button-active#switch-to-adverts-button
+        | Adverts
+      a.btn.btn-primary.btn-lg.outline#switch-to-users-button
+        | Users
+
+    .container.my-container#admin-adverts-list
+      ul.list-group
+        - @adverts.each do |advert|
+          li
+            = render advert
+
+    .container.my-container#admin-users-list
+      ul.list-group
+        - @users.each do |user|
+          li
+            = render user
