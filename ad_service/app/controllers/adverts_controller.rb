@@ -71,7 +71,7 @@ class AdvertsController < ApplicationController
       :body,
       :price,
       :status,
-      :category,
+      :category_id,
       image_attributes: [:id, :body, :advert_id]
     )
   end

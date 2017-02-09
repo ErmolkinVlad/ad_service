@@ -1,10 +1,11 @@
 .row
-  .col-md-2
-    ul.vertical
+  .col-md-2.category-area
+    ul.vertical#categories
       - @categories.each do |category|
-        li 
-          = category
-
+        = render partial: 'admin/categories/category', object: category
+    a.glyphicon.glyphicon-plus#new-category-button aria-hidden="true"
+    #new-category-form
+      = render partial: 'admin/categories/form', object: @category, locals: {category: @category}
   .col-md-10
     .button-group.switch-buttons role='group' 
       a.btn.btn-primary.btn-lg.outline.button-active#switch-to-adverts-button

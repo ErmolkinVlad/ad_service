@@ -8,10 +8,13 @@
       p
         = advert.price
         br/
-        = advert.category
+        = advert.category.title
       p
         h3
           = advert.status
+      p
+        h4
+          = advert.user.email
     = button_to 'Show', [advert.user, advert], method: :get, form_class: 'show-form'
     - if policy(advert).edit?
       = button_to 'Edit', edit_user_advert_path(advert.user, advert), method: :get, form_class: 'edit-form'

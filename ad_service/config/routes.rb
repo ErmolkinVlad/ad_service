@@ -10,9 +10,11 @@ Rails.application.routes.draw do
     resources :adverts
   end
 
+
   namespace :admin do
     resources :users, only: [:show]
     resources :adverts
+    resources :categories, only: [:create, :destroy, :update]
     get '', to: 'adverts#index'
   end
 

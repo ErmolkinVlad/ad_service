@@ -6,7 +6,7 @@
   p
     = f.input :price
   p
-    = f.input :category, prompt: 'Choose a Category', collection: Advert.categories.symbolize_keys.keys
+    = f.association :category, prompt: "Choose category...", required: true
   - unless @advert.new_record?
     p 
       | Current: #{@advert.status}

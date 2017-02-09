@@ -1,0 +1,4 @@
+$('.simple_form.edit_category').bind('ajax:success', function() { $(this).parent() 
+  $("<%= escape_javascript(render @category) %>").insertAfter($(this).parent());
+  $(this).parent().remove();
+});  

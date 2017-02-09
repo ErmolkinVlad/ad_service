@@ -19,12 +19,19 @@ ActiveRecord::Schema.define(version: 20170130185252) do
     t.string   "title"
     t.text     "body"
     t.float    "price"
+    t.integer  "status",      default: 0
     t.integer  "user_id"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-    t.integer  "category",   default: 0
-    t.integer  "status",     default: 0
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.integer  "category_id"
+    t.index ["category_id"], name: "index_adverts_on_category_id", using: :btree
     t.index ["user_id"], name: "index_adverts_on_user_id", using: :btree
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string   "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "images", force: :cascade do |t|
@@ -52,6 +59,7 @@ ActiveRecord::Schema.define(version: 20170130185252) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "adverts", "categories"
   add_foreign_key "adverts", "users"
   add_foreign_key "images", "adverts"
 end

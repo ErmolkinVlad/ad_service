@@ -2,7 +2,7 @@ class AdvertPolicy
   attr_reader :user, :advert
 
   def initialize(user, advert)
-    @user = user.nil? ? User.new : user
+    @user = user || User.new
     @advert = advert
   end
 
@@ -19,12 +19,10 @@ class AdvertPolicy
   end
 
   def edit?
-    true
     @advert.user == @user
   end
 
   def update?
-    true
     edit?
   end
 

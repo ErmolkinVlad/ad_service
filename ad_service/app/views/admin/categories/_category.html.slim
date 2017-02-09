@@ -1,0 +1,13 @@
+li.category-list-item
+  = category.title
+  .dropdown.category-options
+    btn.glyphicon.glyphicon-option-vertical type='button' data-toggle='dropdown'
+    ul.dropdown-menu
+      li data-check-id='#{category.id}'
+        a.edit-category-button
+          | Edit
+      li
+        = link_to "Delete", admin_category_path(category), method: :delete, remote: true, class: "delete-category"
+  = render partial: '/admin/categories/form', locals: {category: category}
+
+

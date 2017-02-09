@@ -13,5 +13,4 @@ class UserPolicy
   def admin_index?
     @user.admin?
   end
-
 end

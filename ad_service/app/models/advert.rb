@@ -1,12 +1,12 @@
 class Advert < ApplicationRecord
   include AASM
-
-  enum category: [:Sale, :Buy, :Exchange, :Service, :Rent]
   enum status: [:recent, :moderated, :canceled, :published, :archived]
 
   validates :price, numericality: { greater_than: 0 }
+  validates :category_id, presence: true
 
   belongs_to :user
+  belongs_to :category
 
   has_many :images, dependent: :destroy
   accepts_nested_attributes_for :images
@@ -31,7 +31,7 @@ class Advert < ApplicationRecord
     end
 
     event :refresh do
-      transitions to: :recent#, from: [:recent, :moderated, :published, :canceled, :archived]
+      transitions to: :recent
     end
 
     event :moderate do

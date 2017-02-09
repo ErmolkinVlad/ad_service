@@ -1,31 +1,33 @@
-class Admin::AdvertsController < ApplicationController
-  def index
-    @categories = Advert.categories.symbolize_keys.keys.unshift(:All)
-    @adverts = Advert.where(status: 'moderated')
-    @users = User.all
-    authorize [:admin, Advert]
-  end
+module Admin
+  class AdvertsController < ApplicationController
+    def index
+      @categories = Category.all
+      @category = Category.new
+      @adverts = Advert.where(status: 'moderated')
+      @users = User.all
+      authorize [:admin, Advert]
+    end
 
-  def show
-    @advert = Advert.find(params[:id])
-  end
+    def show
+      @advert = Advert.find(params[:id])
+    end
 
-  def update
-    @advert = Advert.find(params[:id])
-    @advert.update(advert_params)
-  end
+    def update
+      @advert = Advert.find(params[:id])
+      @advert.update(advert_params)
+    end
 
+    private
 
-  private
-
-  def advert_params
-  params.require(:advert).permit(
-      :title,
-      :body,
-      :price,
-      :status,
-      :category,
-      image_attributes: [:id, :body, :advert_id]
-    )
+    def advert_params
+      params.require(:advert).permit(
+        :title,
+        :body,
+        :price,
+        :status,
+        :category,
+        image_attributes: [:id, :body, :advert_id]
+      )
+    end
   end
 end
