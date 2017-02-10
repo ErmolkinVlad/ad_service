@@ -1,5 +1,6 @@
 class Advert < ApplicationRecord
   include AASM
+  has_paper_trail
   enum status: [:recent, :moderated, :canceled, :published, :archived]
 
   validates :price, numericality: { greater_than: 0 }
@@ -37,5 +38,16 @@ class Advert < ApplicationRecord
     event :moderate do
       transitions to: :moderated, from: [:recent, :archived]
     end
+  end
+
+  def self.set_archive
+    yesterday = Time.zone.now.ago(1.day)
+    @adverts = Advert.all.select { |ad| !ad.archived? }
+    @adverts.each do |advert|
+      if advert.versions.last.changeset['updated_at'][1] < yesterday
+        advert.archive!
+      end
+    end
+    puts "#{Time.now} - Success!"
   end
 end

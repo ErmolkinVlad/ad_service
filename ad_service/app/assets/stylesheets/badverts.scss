@@ -1,7 +1,6 @@
 .brd {
-border: 2px solid #f2f2f2 !important;
-/*margin: 5px;*/
-padding: 5px;
+  width: 300px !important;
+  height: auto;
 }
 
 .inline-element {
@@ -26,12 +25,31 @@ padding: 5px;
   right: 5px;
 }
 
-.edit-form {
-  position: absolute;
-  top: 5px;
-  right: 5px;
+.edit-button {
+  margin-top: 10px;
+  float: right;
+  color: black;
+  text-decoration: none;
+  font-size: 2em;
 }
 
 .container.my-container {
   width: 100%;
+}
+
+div.img {
+    margin: 5px;
+    border: 1px solid #ccc;
+    /*float: left;*/
+    display: inline-block;
+    width: 180px;
+}
+
+div.img:hover {
+    border: 1px solid #777;
+}
+
+div.img img {
+    width: 100%;
+    height: auto;
 }

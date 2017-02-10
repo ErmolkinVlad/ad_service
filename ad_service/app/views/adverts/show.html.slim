@@ -1,7 +1,10 @@
 = advert_avatar(@advert)
-= button_to 'Edit', edit_user_advert_path(@advert.user, @advert), method: :get, form_class: 'edit-form'
+= link_to "", edit_user_advert_path(@advert.user, @advert), class: 'edit-button glyphicon glyphicon-option-vertical'
 h1.inline-element.title = @advert.title
 h3 = @advert.body
 h3 = @advert.status
-- @advert.images.each do |image|
-  = image_tag(image.body_url(:standard), :class => "brd")
+.image-container
+  - @advert.images.each do |image|
+    .img.brd
+      a href="#{image.body_url}"
+        = image_tag(image.body_url(:standard))
