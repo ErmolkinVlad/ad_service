@@ -42,12 +42,12 @@ class Advert < ApplicationRecord
 
   def self.set_archive
     yesterday = Time.zone.now.ago(1.day)
-    @adverts = Advert.all.select { |ad| !ad.archived? }
+    @adverts = Advert.all.select { |ad| ad.published? }
     @adverts.each do |advert|
       if advert.versions.last.changeset['updated_at'][1] < yesterday
         advert.archive!
+        puts "#{Time.now} | #{advert.title} - Success!"
       end
     end
-    puts "#{Time.now} - Success!"
   end
 end

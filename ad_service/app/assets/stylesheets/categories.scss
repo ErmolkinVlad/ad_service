@@ -1,0 +1,13 @@
+li.category-list-item {
+  position: relative;
+}
+
+li.category-list-item:hover {
+  background-color: #E1E1E1;
+  position: relative;
+}
+
+li.category-list-item.active-category-item {
+  border-right: 3px solid #0B045F;
+  background-color: #9A9A9A;
+}

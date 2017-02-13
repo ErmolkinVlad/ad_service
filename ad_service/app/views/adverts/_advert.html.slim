@@ -1,20 +1,24 @@
-.panel.panel-default
-  .panel-body
-    .panel-more1.inline-element
-      = advert_avatar advert
-    .panel-info
-      strong 
-        = advert.title
-      p
-        = advert.price
-        br/
-        = advert.category.title
-      p
-        h3
-          = advert.status
-      p
-        h4
-          = advert.user.email
-    = button_to 'Show', [advert.user, advert], method: :get, form_class: 'show-form'
-    - if policy(advert).edit?
-      = button_to 'Edit', edit_user_advert_path(advert.user, advert), method: :get, form_class: 'edit-form'
+li
+  .panel.panel-default
+    .panel-body
+      .panel-more1.inline-element
+        = advert_avatar advert
+      .panel-info
+        strong 
+          = advert.title
+        p
+          = advert.price
+          br/
+          = advert.category.title
+        p
+          h3
+            = advert.status
+        p
+          h4
+            = advert.user.email
+      = button_to 'Show', [advert.user, advert], method: :get, form_class: 'show-form'
+      .buttons-container
+        - if policy(advert).edit?
+          = button_to 'Edit', edit_user_advert_path(advert.user, advert), method: :get, form_class: 'edit-advert-form'
+        - if policy(advert).destroy?
+          = button_to 'Delete', [advert.user, advert], method: :delete, remote: true, form_class: 'destroy-advert-form' 

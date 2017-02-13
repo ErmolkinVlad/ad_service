@@ -1,5 +1,5 @@
 class AdvertsController < ApplicationController
-  before_action :user
+  before_action :user, except: [:search_index, :filter]
 
   def index; end
 
@@ -41,6 +41,26 @@ class AdvertsController < ApplicationController
     else
       @statuses = statuses_for_select
       render action: 'edit'
+    end
+  end
+
+  def destroy
+    @advert = Advert.find(params[:id])
+    @advert.destroy
+  end
+
+  def search_index
+    @q = Advert.where(status: :published).ransack(params[:q])
+    @q.sorts = 'price desc' if @q.sorts.empty?
+    @adverts = @q.result(distinct: true)
+    # @posts = @search.result.paginate(page: params[:page], per_page: 20)
+    render 'search_index'
+  end
+
+  def filter
+    @adverts = Advert.search(category_id_eq: params[:filter][:category], status_eq: params[:filter][:status]).result(distinct: true)
+    respond_to do |format|
+      format.js
     end
   end
 

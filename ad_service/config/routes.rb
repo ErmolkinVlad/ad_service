@@ -2,9 +2,11 @@ Rails.application.routes.draw do
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   get 'profile', to: 'users#show'
-  # get 'admin', to: 'users#admin_index'
 
   get 'adverts', to: 'home#index'
+  get 'search', to: 'adverts#search_index', as: 'search'
+  post 'filter', to: 'adverts#filter', as: 'filter'
+  post 'home_filter', to: 'home#filter', as: 'home_filter'
 
   resources :users do
     resources :adverts

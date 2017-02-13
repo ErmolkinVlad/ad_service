@@ -1,12 +1,30 @@
-= user_avatar @user
-h2.inline-element
-  = @user.email
-= link_to "New advert", new_user_advert_path(@user)
+.user-profile
+  .user-avatar
+    = user_avatar @user
+  .profile-info
+    | Email: 
+    = @user.email
+    br
+    = link_to "New advert", new_user_advert_path(@user)
 
- 
+.filter-block
+  a.search-filter-link
+    | Parameters
+    span.caret
+    .search-filter-form
+      = search_form_for @q, url: filter_path, method: :post, remote: true, class: 'navbar-form navbar-left' do |f|
+        = f.select :category_id_eq, options_from_collection_for_select(Category.all, :id, :title, @q.category_id_eq), include_blank: 'Select category... '
+        br
+        = f.select :status_eq, options_from_collection_for_select(Advert.statuses, 'second', 'first', @q.status_eq), include_blank: 'Select status... '
+  .tag-container
+    a#category-tag
+      | Category
+    a#status-tag
+      | Status
+
+br
 .container.my-container
-  ul.list-group
+  ul.list-group#user-adverts-list
     - @adverts.each do |advert|
-      li
-        = render advert
+      = render advert
  

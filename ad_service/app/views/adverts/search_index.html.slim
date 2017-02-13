@@ -1,0 +1,18 @@
+.dropdown.sort-button
+  button.dropdown-toggle data-toggle="dropdown" type="button" 
+    | Sort by
+    span.caret
+  ul.dropdown-menu
+    li
+      = sort_link @q, :price
+    li
+      = sort_link @q, :created_at
+
+- if @adverts.present?
+  ul.list-group
+    - @adverts.each do |advert|
+      li
+        = render advert
+- else
+  h3
+    | Sorry. No matches.

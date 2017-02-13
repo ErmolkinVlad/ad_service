@@ -1,5 +1,5 @@
 .brd {
-  width: 300px !important;
+  max-width: 300px !important;
   height: auto;
 }
 
@@ -35,6 +35,7 @@
 
 .container.my-container {
   width: 100%;
+  position:relative;
 }
 
 div.img {
@@ -52,4 +53,25 @@ div.img:hover {
 div.img img {
     width: 100%;
     height: auto;
+}
+
+.buttons-container {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  flex-direction: row;
+}
+
+.destroy-advert-form {
+  display: inline-block;
+}
+
+
+.edit-advert-form {
+  display: inline-block;
+}
+
+.sort-button {
+margin-top: 10px;
+width: 50%;
 }

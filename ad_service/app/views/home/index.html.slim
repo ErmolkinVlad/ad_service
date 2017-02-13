@@ -2,9 +2,14 @@
   .notice= flash[:notice]
 
 .row
-  .container.my-container
-    ul.list-group
-      - @adverts.each do |advert|
-        li
+  .col-md-2.category-area
+    ul.vertical
+      li.category-list-item data-id=''
+        | All
+      - @categories.each do |category|
+        = render category
+  .col-md-10
+    .container.my-container
+      ul.list-group#home-advert-list
+        - @adverts.each do |advert|
           = render advert
-      

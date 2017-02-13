@@ -27,6 +27,6 @@ class AdvertPolicy
   end
 
   def destroy?
-    @user.admin? || @user.adverts.include?(@advert)
+    @user == @advert.user
   end
 end
