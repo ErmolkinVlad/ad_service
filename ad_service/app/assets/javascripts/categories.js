@@ -22,8 +22,8 @@ $(document).on('click', '.category-list-item', function() {
     }
   }
   $.ajax({
-    type: 'post',
-    url: '/home_filter',
+    type: 'get',
+    url: '/adverts',
     dataType: 'script',
     data: sendable
   })

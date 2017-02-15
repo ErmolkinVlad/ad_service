@@ -1,4 +1,6 @@
 class Advert < ApplicationRecord
+  paginates_per 2
+
   include AASM
   has_paper_trail
   enum status: [:recent, :moderated, :canceled, :published, :archived]

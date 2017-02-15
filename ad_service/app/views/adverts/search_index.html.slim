@@ -9,6 +9,8 @@
       = sort_link @q, :created_at
 
 - if @adverts.present?
+  h3
+    = "Results for \"#{@search_phrase}\":"
   ul.list-group
     - @adverts.each do |advert|
       li
@@ -16,3 +18,5 @@
 - else
   h3
     | Sorry. No matches.
+
+= paginate @adverts

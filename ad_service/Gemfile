@@ -80,3 +80,5 @@ gem 'whenever', require: false
 gem 'paper_trail'
 
 gem 'ransack'
+
+gem 'kaminari'

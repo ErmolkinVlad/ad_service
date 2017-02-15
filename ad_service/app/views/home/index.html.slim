@@ -4,7 +4,7 @@
 .row
   .col-md-2.category-area
     ul.vertical
-      li.category-list-item data-id=''
+      li.category-list-item.active-category-item data-id=''
         | All
       - @categories.each do |category|
         = render category
@@ -13,3 +13,7 @@
       ul.list-group#home-advert-list
         - @adverts.each do |advert|
           = render advert
+
+#home-pagination-nav
+  - if @adverts.present?
+    = paginate @adverts, remote: true, params: {controller: 'home', action: 'index'}

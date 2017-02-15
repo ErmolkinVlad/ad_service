@@ -1,0 +1,2 @@
+$('#home-advert-list').html('<%= j render @adverts %>');
+$('#home-pagination-nav').html('<%= j paginate @adverts, remote: true, params: {controller: 'home', action: 'index'} %>');

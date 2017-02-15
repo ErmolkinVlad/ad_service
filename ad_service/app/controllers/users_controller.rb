@@ -1,8 +1,14 @@
 class UsersController < ApplicationController
   def show
     @user = current_user
-    @adverts = @user.adverts
+    category = params[:filter].try(:fetch, :category)
+    status = params[:filter].try(:fetch, :status)
+    @adverts = @user.adverts.search(category_id_eq: category, status_eq: status).result(distinct: true).page params[:page]
     authorize @user
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def index

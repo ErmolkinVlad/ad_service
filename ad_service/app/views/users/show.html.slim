@@ -12,10 +12,10 @@
     | Parameters
     span.caret
     .search-filter-form
-      = search_form_for @q, url: filter_path, method: :post, remote: true, class: 'navbar-form navbar-left' do |f|
-        = f.select :category_id_eq, options_from_collection_for_select(Category.all, :id, :title, @q.category_id_eq), include_blank: 'Select category... '
+      = search_form_for @q, url: current_user, method: :get, remote: true, class: 'navbar-form navbar-left' do |f|
+        = f.select :category_id_eq, options_from_collection_for_select(Category.all, :id, :title, @q.category_id_eq), {include_blank: 'Select category... '}
         br
-        = f.select :status_eq, options_from_collection_for_select(Advert.statuses, 'second', 'first', @q.status_eq), include_blank: 'Select status... '
+        = f.select :status_eq, options_from_collection_for_select(Advert.statuses, 'second', 'first', @q.status_eq), {include_blank: 'Select status... '}
   .tag-container
     a#category-tag
       | Category
@@ -27,4 +27,7 @@ br
   ul.list-group#user-adverts-list
     - @adverts.each do |advert|
       = render advert
- 
+
+#pagination-nav
+  - if @adverts.present?
+    = paginate @adverts, remote: true, params: {controller: 'users', action: 'show'}

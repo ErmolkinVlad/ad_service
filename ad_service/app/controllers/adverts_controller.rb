@@ -50,18 +50,11 @@ class AdvertsController < ApplicationController
   end
 
   def search_index
+    @search_phrase = params[:q][:title_or_body_cont]
     @q = Advert.where(status: :published).ransack(params[:q])
     @q.sorts = 'price desc' if @q.sorts.empty?
-    @adverts = @q.result(distinct: true)
-    # @posts = @search.result.paginate(page: params[:page], per_page: 20)
+    @adverts = @q.result(distinct: true).page params[:page]
     render 'search_index'
-  end
-
-  def filter
-    @adverts = Advert.search(category_id_eq: params[:filter][:category], status_eq: params[:filter][:status]).result(distinct: true)
-    respond_to do |format|
-      format.js
-    end
   end
 
   private

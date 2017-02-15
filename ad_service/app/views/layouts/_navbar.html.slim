@@ -6,7 +6,7 @@ nav.navbar.navbar-default
       li.nav-li.search-form
         = search_form_for @q, url: search_path, method: :get, class: 'navbar-form navbar-left' do |f|
           = f.search_field :title_or_body_cont, class: 'form-control', placeholder: 'Search'
-          = f.submit
+          = f.button '', type: :submit, class: 'search-submit-button glyphicon glyphicon-search'
       - if user_signed_in?
         li.dropdown
           a.dropdown-toggle data-toggle='dropdown' href='#'

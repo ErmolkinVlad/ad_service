@@ -35,8 +35,28 @@ $(document).on('click', '.search-filter-link', function(e) {
   }
 })
 
+
+$(document).on('mouseenter', '.search-filter-link', function() {
+    clearTimeout($(this).data('timeoutId'));
+    $(this).find("#advert_search").fadeIn("fast");
+});
+
+$(document).on('mouseleave', '.search-filter-link', function() {
+    var someElement = $(this),
+        timeoutId = setTimeout(function(){
+            $('.search-filter-link').children().removeClass('selected');
+        }, 650);
+    //set the timeoutId, allowing us to clear this trigger if the mouse comes back over
+    someElement.data('timeoutId', timeoutId); 
+});
+
+
+
+
+
+
 $(document).on('click', '#q_category_id_eq, #q_status_eq', function(e) {
-  if($('#q_category_id_eq').find(":selected").val() != '') {
+  if ($('#q_category_id_eq').find(":selected").val() != '') {
     $('#category-tag').text('#' + $('#q_category_id_eq').find(":selected").text());
     $('#category-tag').fadeIn();
   } else {
@@ -55,13 +75,9 @@ $(document).on('click', '#q_category_id_eq, #q_status_eq', function(e) {
     }
   }
   $.ajax({
-    type: 'post',
+    type: 'get',
     url: $(this).parent().attr('action'),
     dataType: 'script',
     data: sendable
   })
-})
-
-$(document).on('click', '#category-tag, #status-tag', function(e) {
-
 })

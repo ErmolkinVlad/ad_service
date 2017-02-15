@@ -18,6 +18,16 @@
 @import "bootstrap";
 
 
+.search-submit-button {
+  box-sizing: border-box;
+  padding: 6px;
+  padding-bottom: 10px;
+  background-color: #61B1FF;
+  border: 1px solid white;
+  color: white;
+  border-radius: 4px;
+}
+
 .navbar-default {
   margin-bottom: 0;
   background-color: rgba(#1E90FF, 0.7);

@@ -5,8 +5,6 @@ Rails.application.routes.draw do
 
   get 'adverts', to: 'home#index'
   get 'search', to: 'adverts#search_index', as: 'search'
-  post 'filter', to: 'adverts#filter', as: 'filter'
-  post 'home_filter', to: 'home#filter', as: 'home_filter'
 
   resources :users do
     resources :adverts
