@@ -1,0 +1,2 @@
+$('#admin-user-pagination-nav').html('<%= j paginate @adverts, remote: true, params: {controller: 'admin/users', action: 'show'} %>');
+$('#admin-user-adverts-list').html('<%= j render partial: "/adverts/advert", collection: @adverts %>');

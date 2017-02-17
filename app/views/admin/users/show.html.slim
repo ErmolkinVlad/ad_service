@@ -1,0 +1,19 @@
+.row
+  .col-md-3
+    .user-info
+      = user_avatar(@user)
+      h4
+        | Email: 
+        = @user.email
+      h4  
+        | Role:
+        = @user.role
+  .col-md-9
+    .container.my-container
+      ul.list-group#admin-user-adverts-list
+        / - @adverts.each do |advert|
+        = render partial: '/adverts/advert', collection: @adverts
+
+#admin-user-pagination-nav
+  - if @adverts.present?
+    = paginate @adverts, remote: true
