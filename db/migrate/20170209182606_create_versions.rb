@@ -5,8 +5,8 @@ class CreateVersions < ActiveRecord::Migration
   # - `MysqlAdapter` - Used by gems: `mysql`, `activerecord-jdbcmysql-adapter`.
   # - `Mysql2Adapter` - Used by `mysql2` gem.
   MYSQL_ADAPTERS = [
-    "ActiveRecord::ConnectionAdapters::MysqlAdapter",
-    "ActiveRecord::ConnectionAdapters::Mysql2Adapter"
+    'ActiveRecord::ConnectionAdapters::MysqlAdapter',
+    'ActiveRecord::ConnectionAdapters::Mysql2Adapter'
   ].freeze
 
   # The largest text column available in all supported RDBMS is
@@ -27,7 +27,7 @@ class CreateVersions < ActiveRecord::Migration
       # -------------------------------------------------
       #
       # MySQL timestamp columns do not support fractional seconds unless
-      # defined with "fractional seconds precision". MySQL users should manually
+      # defined with 'fractional seconds precision'. MySQL users should manually
       # add fractional seconds precision to this migration, specifically, to
       # the `created_at` column.
       # (https://dev.mysql.com/doc/refman/5.6/en/fractional-seconds.html)
@@ -72,7 +72,7 @@ class CreateVersions < ActiveRecord::Migration
   #
   def versions_table_options
     if mysql?
-      { options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci" }
+      { options: 'ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci' }
     else
       {}
     end

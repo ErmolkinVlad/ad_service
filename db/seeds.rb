@@ -7,9 +7,9 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 categories = Category.create([
-                              {title: :Sale},
-                              {title: :Buy},
-                              {title: :Exchange},
-                              {title: :Service},
-                              {title: :Rent}
+                               { title: :Sale },
+                               { title: :Buy },
+                               { title: :Exchange },
+                               { title: :Service },
+                               { title: :Rent }
                              ])
