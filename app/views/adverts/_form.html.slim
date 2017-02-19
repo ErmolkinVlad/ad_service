@@ -2,9 +2,11 @@
   p
     = f.input :title
   p
-    = f.input :body
+    = f.input :description
   p
     = f.input :price
+  p
+    = select(:advert, :ad_type, Advert.ad_types)
   p
     = f.association :category, prompt: "Choose category...", required: true
   - unless @advert.new_record?

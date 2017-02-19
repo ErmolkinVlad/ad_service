@@ -1,7 +1,7 @@
 = advert_avatar(@advert)
 = link_to "", edit_user_advert_path(@advert.user, @advert), class: 'edit-button glyphicon glyphicon-option-vertical'
 h1.inline-element.title = @advert.title
-h3 = @advert.body
+h3 = @advert.description
 h3 = @advert.status
 .image-container
   - @advert.images.each do |image|

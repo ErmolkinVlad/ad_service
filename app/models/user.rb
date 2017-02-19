@@ -32,7 +32,6 @@ class User < ApplicationRecord
           password: Devise.friendly_token[0,20]
         )
         puts user.inspect
-        user.skip_confirmation
         user.save!
       end
     end

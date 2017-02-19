@@ -44,7 +44,7 @@ class AdvertsController < ApplicationController
   end
 
   def search_index
-    @search_phrase = params[:q][:title_or_body_cont]
+    @search_phrase = params[:q][:title_or_description_cont]
     @q = Advert.where(status: :published).ransack(params[:q])
     @q.sorts = 'price desc' if @q.sorts.empty?
     @adverts = @q.result(distinct: true).page params[:page]
@@ -83,7 +83,7 @@ class AdvertsController < ApplicationController
   def advert_params
     params.require(:advert).permit(
       :title,
-      :body,
+      :description,
       :price,
       :status,
       :category_id,

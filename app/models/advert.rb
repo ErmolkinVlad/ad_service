@@ -4,10 +4,12 @@ class Advert < ApplicationRecord
   include AASM
   has_paper_trail
   enum status: [:recent, :moderated, :canceled, :published, :archived]
+  enum ad_type: [:Sale, :Buy, :Exchange, :Service, :Rent]
 
   validates :price, numericality: { greater_than: 0 }
   validates :title, presence: true, length: { maximum: 20 }
   validates :category_id, presence: true
+  validates :ad_type, presence: true
 
   belongs_to :user
   belongs_to :category

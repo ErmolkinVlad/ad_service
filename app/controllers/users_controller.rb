@@ -18,7 +18,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     @user.avatar = params[:avatar]
-    @user.create
+    @user.save!
   end
 
   def finish_signup

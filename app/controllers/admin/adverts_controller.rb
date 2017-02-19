@@ -26,7 +26,7 @@ module Admin
     def advert_params
       params.require(:advert).permit(
         :title,
-        :body,
+        :description,
         :price,
         :status,
         :category,

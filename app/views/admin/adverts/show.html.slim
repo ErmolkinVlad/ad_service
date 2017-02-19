@@ -1,6 +1,6 @@
 = advert_avatar(@advert)
 h1.inline-element.title = @advert.title
-h3 = @advert.body
+h3 = @advert.description
 h3 = @advert.status
 .image-container
   - @advert.images.each do |image|
