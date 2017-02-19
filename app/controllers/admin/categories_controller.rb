@@ -1,6 +1,6 @@
 module Admin
   class CategoriesController < ApplicationController
-    before_action :set_category, only: [:update, :destroy]
+    before_action :set_category, only: [:update]
 
     def create
       @category = Category.create(category_params)
@@ -11,13 +11,7 @@ module Admin
     end
 
     def update
-      @category = Category.find(params[:id])
       @category.update(category_params)
-    end
-
-    def destroy
-      @category = Category.find(params[:id])
-      @category.destroy
     end
 
     private
