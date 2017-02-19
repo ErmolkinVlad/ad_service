@@ -3,10 +3,16 @@ module Admin
     before_action :set_category, only: [:update]
 
     def create
-      @category = Category.create(category_params)
+      @category = Category.new(category_params)
 
       respond_to do |format|
-        format.js
+        if @category.save
+          format.js
+          format.json
+        else
+          format.html { render partial: 'admin/categories/category', object: @category }
+          format.json { render json: @category.errors, status: :unprocessable_entity }
+        end
       end
     end
 

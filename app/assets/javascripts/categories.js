@@ -1,12 +1,9 @@
 $(function() {
-  $(document).on('turbolinks:load', function() {
-  $('#new-category-button').click(function() {
+  $(document).on('click', '#new-category-button', function() {
     $(this).fadeOut();
     $('#new-category-form').fadeIn();
   })
-})
 });
-
 
 $(document).on('click', '.edit-category-button',function() {
     var id = $(this).parent().attr("data-check-id");
