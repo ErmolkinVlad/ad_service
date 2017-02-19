@@ -6,6 +6,7 @@ class Advert < ApplicationRecord
   enum status: [:recent, :moderated, :canceled, :published, :archived]
 
   validates :price, numericality: { greater_than: 0 }
+  validates :title, presence: true, length: { maximum: 20 }
   validates :category_id, presence: true
 
   belongs_to :user
