@@ -7,7 +7,7 @@ class UserPolicy
   end
 
   def show?
-    @user == @record || @user.admin?
+    @user && @user == @record || @user.admin?
   end
 
   def admin_index?

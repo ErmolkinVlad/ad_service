@@ -250,8 +250,14 @@ config.secret_key = '02eb3d5276464f8e238cd18f6f97e247f4a3b2568f226bbdbe9963251c1
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
-  config.omniauth :facebook, "987358828030356", "71b0e4e956ec619b698e4d9ca9c6e515"
-  config.omniauth :twitter, "Rxu86UO4kvNnljJhflhm4SzrX", "KpWGT44w3Y4ywKVE9pgP72NXrGyTajF0C006MlWtP0pK4qaz6Y"
+  config.omniauth :facebook, '987358828030356', '71b0e4e956ec619b698e4d9ca9c6e515'
+  config.omniauth :twitter, 'Rxu86UO4kvNnljJhflhm4SzrX', 'KpWGT44w3Y4ywKVE9pgP72NXrGyTajF0C006MlWtP0pK4qaz6Y'
+  config.omniauth :vkontakte, '5883818', 'QJJzPOiacsLErKKFXWcj',     {
+      :scope => 'friends,audio,photos,email',
+      :display => 'popup',
+      :lang => 'en',
+      :image_size => 'original'
+    }
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

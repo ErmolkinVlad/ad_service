@@ -10,6 +10,9 @@
 
     <body>
       <%= render '/layouts/navbar' %>
+      <% if !user_signed_in? %>
+        <%= render '/layouts/authentication' %>
+      <% end %>
       <%= yield %>
     </body>
   </html>

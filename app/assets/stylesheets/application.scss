@@ -18,6 +18,17 @@
 @import "bootstrap";
 
 
+.auth-container {
+  position: fixed;
+  bottom: 0;
+  right: 20px;
+  border: 0;
+}
+
+.auth-container li {
+  display: inline-block;
+}
+
 .search-submit-button {
   box-sizing: border-box;
   padding: 6px;
