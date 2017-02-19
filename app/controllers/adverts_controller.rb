@@ -43,10 +43,6 @@ class AdvertsController < ApplicationController
     end
   end
 
-  def destroy
-    @advert.destroy
-  end
-
   def search_index
     @search_phrase = params[:q][:title_or_body_cont]
     @q = Advert.where(status: :published).ransack(params[:q])

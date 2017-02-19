@@ -27,6 +27,6 @@ class AdvertPolicy
   end
 
   def destroy?
-    @user == @advert.user
+    false
   end
 end
