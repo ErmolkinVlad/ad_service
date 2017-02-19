@@ -1,11 +1,11 @@
 class AdvertsController < ApplicationController
-  before_action :user, except: [:search_index, :filter]
-   after_filter :save_my_previous_url, only: [:edit]
+  before_action :set_user, except: [:search_index, :filter]
+  before_action :set_advert, except: [:new, :create, :search_index]
+  after_action :save_my_previous_url, only: [:edit]
 
   def index; end
 
   def show
-    @advert = Advert.find(params[:id])
     authorize @advert
   end
 
@@ -15,7 +15,6 @@ class AdvertsController < ApplicationController
   end
 
   def edit
-    @advert = Advert.find(params[:id])
     @statuses = statuses_for_select
     authorize @advert
   end
@@ -34,7 +33,6 @@ class AdvertsController < ApplicationController
   end
 
   def update
-    @advert = Advert.find(params[:id])
     prev_status = @advert.status
     if @advert.update(advert_params) && @advert.valid?
       @advert.refresh! if prev_status == advert_params[:status]
@@ -46,7 +44,6 @@ class AdvertsController < ApplicationController
   end
 
   def destroy
-    @advert = Advert.find(params[:id])
     @advert.destroy
   end
 
@@ -60,11 +57,15 @@ class AdvertsController < ApplicationController
 
   private
 
+  def set_advert
+    @advert = Advert.find(params[:id])
+  end
+
   def save_my_previous_url
     session[:my_previous_url] = URI(request.referer || '').path
   end
 
-  def user
+  def set_user
     @user = User.find(params[:user_id])
   end
 

@@ -1,5 +1,7 @@
 module Admin
   class AdvertsController < ApplicationController
+    before_action :set_advert, only: [:show, :update]
+
     def index
       @categories = Category.all
       @category = Category.new
@@ -9,15 +11,17 @@ module Admin
     end
 
     def show
-      @advert = Advert.find(params[:id])
     end
 
     def update
-      @advert = Advert.find(params[:id])
       @advert.update(advert_params)
     end
 
     private
+
+    def set_advert
+      @advert = Advert.find(params[:id])
+    end
 
     def advert_params
       params.require(:advert).permit(

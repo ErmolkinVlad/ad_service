@@ -1,1 +1,9 @@
-= render @advert
+= advert_avatar(@advert)
+h1.inline-element.title = @advert.title
+h3 = @advert.body
+h3 = @advert.status
+.image-container
+  - @advert.images.each do |image|
+    .img.brd
+      a href="#{image.body_url}"
+        = image_tag(image.body_url(:standard))
