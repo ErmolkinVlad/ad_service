@@ -33,12 +33,10 @@ class AdvertsController < ApplicationController
   end
 
   def update
-    prev_status = @advert.status
-    if @advert.update(advert_params) && @advert.valid?
-      @advert.refresh! if prev_status == advert_params[:status]
+    if @advert.update(advert_params)
+      @advert.refresh!
       redirect_to session[:my_previous_url]
     else
-      @statuses = statuses_for_select
       render action: 'edit'
     end
   end
@@ -85,7 +83,7 @@ class AdvertsController < ApplicationController
       :title,
       :description,
       :price,
-      :status,
+      :ad_type,
       :category_id,
       image_attributes: [:id, :body, :advert_id]
     )

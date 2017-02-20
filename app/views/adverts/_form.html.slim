@@ -6,15 +6,9 @@
   p
     = f.input :price
   p
-    = select(:advert, :ad_type, Advert.ad_types)
+    = select(:advert, :ad_type, Advert.ad_types.keys)
   p
     = f.association :category, prompt: "Choose category...", required: true
-  - unless @advert.new_record?
-    p 
-      | Current: #{@advert.status}
-      / = f.input :status, prompt: "Change status", collection: @statuses
-      /= collection_select(:advert, :status, @statuses, :to_s, :to_s, prompt: "Hello!!!")
-      = select(:advert, :status, @statuses)
   p
     = f.simple_fields_for :images do |p|
   p
