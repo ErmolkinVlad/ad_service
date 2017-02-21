@@ -7,6 +7,8 @@ Rails.application.routes.draw do
 
   resources :users do
     resources :adverts
+    post 'adverts/:id/make_archive', to: 'adverts#make_archived', as: 'advert_archive'
+    post 'adverts/:id/make_moderated', to: 'adverts#make_moderated', as: 'advert_moderate'
   end
 
 

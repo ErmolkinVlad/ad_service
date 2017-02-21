@@ -27,6 +27,24 @@ $(document).on('turbolinks:load', function() {
   }
 })
 
+$(document).on('turbolinks:load', setStatuses);
+
+
+function setStatuses() {
+  var list = $('#home-advert-list, #user-adverts-list').children('li');
+  for(var i = 0; i < list.length; i++){
+    if($(list[i]).find('#current_status').get(0)){
+      var status = $(list[i]).find('#current_status').get(0).value;
+      if(status == 'recent' || status == 'archived'){
+        $(list[i]).find('#status_moderated').fadeIn();
+      }
+      if(status != 'archived'){
+        $(list[i]).find('#status_archived').fadeIn();
+      }
+    }
+  }
+}
+
 $(document).on('click', '.search-filter-link', function(e) {
   if (($(this).children().hasClass('selected')) && ($(e.target).hasClass('search-filter-link'))) {
     $(this).children().removeClass('selected');

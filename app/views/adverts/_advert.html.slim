@@ -20,3 +20,10 @@ li
       .buttons-container
         - if policy(advert).edit?
           = button_to 'Edit', edit_user_advert_path(advert.user, advert), method: :get, form_class: 'edit-advert-form'
+        - if advert.owner?(current_user)
+          #status_container 
+            = hidden_field_tag('current_status', advert.status, data_status_id: advert.id)
+            #status_archived data-archive-id='#{advert.id}'
+              = link_to 'Archive', user_advert_archive_path(current_user, advert), method: :post, remote: true, class: 'btn'
+            #status_moderated data-moderate-id='#{advert.id}'
+              = link_to 'Submit', user_advert_moderate_path(current_user, advert), method: :post, remote: true, class: 'btn'

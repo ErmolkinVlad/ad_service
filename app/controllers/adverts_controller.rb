@@ -24,7 +24,6 @@ class AdvertsController < ApplicationController
     respond_to do |format|
       if @advert.save
         create_images
-
         format.html { redirect_to @user, notice: 'Advert was succesfully created.' }
       else
         format.html { render action: 'new' }
@@ -47,6 +46,20 @@ class AdvertsController < ApplicationController
     @q.sorts = 'price desc' if @q.sorts.empty?
     @adverts = @q.result(distinct: true).page params[:page]
     render 'search_index'
+  end
+
+  def make_archived
+    @advert.archive!
+    respond_to do |format|
+      format.js {}
+    end
+  end
+
+  def make_moderated
+    @advert.moderate!
+    respond_to do |format|
+      format.js {}
+    end
   end
 
   private

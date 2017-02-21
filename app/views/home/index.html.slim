@@ -11,8 +11,7 @@
   .col-md-10
     .container.my-container
       ul.list-group#home-advert-list
-        - @adverts.each do |advert|
-          = render advert
+          = render @adverts
 
 #home-pagination-nav
   - if @adverts.present?

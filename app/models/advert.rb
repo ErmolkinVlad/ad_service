@@ -55,4 +55,8 @@ class Advert < ApplicationRecord
       end
     end
   end
+
+  def owner?(user)
+    user == self.user
+  end
 end

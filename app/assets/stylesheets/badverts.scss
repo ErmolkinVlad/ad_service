@@ -3,6 +3,10 @@
   height: auto;
 }
 
+#status_moderated, #status_archived {
+  display: none;
+}
+
 .inline-element {
   display: inline-block;
 }
