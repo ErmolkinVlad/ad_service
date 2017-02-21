@@ -16,5 +16,11 @@ module AdService
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
     config.action_controller.include_all_helpers = true
+    config.generators do |g|
+      g.controller_specs false
+      g.view_specs false
+      g.helper_specs false
+      g.routing_specs false
+    end
   end
 end
