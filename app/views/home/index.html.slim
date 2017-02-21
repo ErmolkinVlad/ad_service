@@ -15,6 +15,11 @@
       | Category
     a#ad_type-tag
       | Status
+.sort-container      
+  #created_at_sort_link
+    = sort_link @q, :created_at, {}, {url: root_path, remote: true}
+  #price_sort_link
+    = sort_link @q, :price, {}, {url: root_path, remote: true}
 
 .container.my-container
   ul.list-group#home-advert-list

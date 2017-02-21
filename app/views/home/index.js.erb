@@ -1,3 +1,5 @@
 $('#home-advert-list').html('<%= j render @adverts %>');
 $('#home-pagination-nav').html('<%= j paginate @adverts, remote: true, params: {controller: 'home', action: 'index'} %>');
+$('#created_at_sort_link').html('<%= j sort_link @q, :created_at, {}, {url: root_path, remote: true} %>');
+$('#price_sort_link').html('<%= j sort_link @q, :price, {}, {url: root_path, remote: true} %>');
 setStatuses();

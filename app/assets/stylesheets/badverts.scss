@@ -3,6 +3,29 @@
   height: auto;
 }
 
+.sort-container {
+  text-align: right;
+  width: 100%;
+  margin: 10px 10px 0;
+  padding: 10px;
+  box-sizing: border-box;
+  display: block;
+  padding-right: 30px;
+}
+
+#created_at_sort_link, #price_sort_link {
+  display: inline-block;
+  background-color: #40A1FF;
+  margin-left: 3px;
+  margin-right: 3px;
+  padding: 3px 10px 3px;
+}
+
+ #created_at_sort_link a, #price_sort_link a {
+  text-decoration: none;
+    color: white;
+ }
+
 #status_moderated, #status_archived {
   display: none;
 }

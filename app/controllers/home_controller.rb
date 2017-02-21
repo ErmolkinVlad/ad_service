@@ -2,8 +2,11 @@ class HomeController < ApplicationController
   def index
     category = params[:filter].try(:fetch, :category)
     status = params[:filter].try(:fetch, :ad_type)
-    @adverts = Advert.where(status: :published).search(category_id_eq: category, ad_type_eq: status).result().page params[:page]
-    @categories = Category.all.sort_by { |category| category.title }
+    sorts = params[:q].try(:fetch, :s)
+
+    @q = Advert.where(status: :published).search(category_id_eq: category, ad_type_eq: status)
+    @q.sorts = sorts ? sorts : 'created_at asc'
+    @adverts = @q.result().page params[:page]
     respond_to do |format|
       format.html
       format.js
