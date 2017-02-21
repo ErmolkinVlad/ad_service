@@ -1,2 +1,3 @@
 $('[data-moderate-id="<%= @advert.id %>"]').fadeOut();
 $('[data-archive-id="<%= @advert.id %>"]').fadeIn();
+$('[data-advert-id="<%= @advert.id %>"]').find('.status-field').text('<%= @advert.status %>');
