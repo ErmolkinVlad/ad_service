@@ -71,31 +71,42 @@ $(document).on('mouseleave', '.search-filter-link', function() {
 
 
 
+function sendFilterThroughAjax(controller, method) {
+  var sendable = {
+    filter: {
+      category: $('#q_category_id_eq').find(":selected").val(),
+      ad_type: $('#q_ad_type_eq').find(":selected").val()
+    }
+  }
+  $.ajax({
+    type: method,
+    url: controller,
+    dataType: 'script',
+    data: sendable
+  })
+}
 
-
-$(document).on('click', '#q_category_id_eq, #q_status_eq', function(e) {
+function changeTags() {
   if ($('#q_category_id_eq').find(":selected").val() != '') {
     $('#category-tag').text('#' + $('#q_category_id_eq').find(":selected").text());
     $('#category-tag').fadeIn();
   } else {
     $('#category-tag').fadeOut();
   }
-  if($('#q_status_eq').find(":selected").val() != '') {
-    $('#status-tag').html('#' + $('#q_status_eq').find(":selected").text());
-    $('#status-tag').fadeIn();
+  if($('#q_ad_type_eq').find(":selected").val() != '') {
+    $('#ad_type-tag').html('#' + $('#q_ad_type_eq').find(":selected").text());
+    $('#ad_type-tag').fadeIn();
   } else {
-    $('#status-tag').fadeOut();
+    $('#ad_type-tag').fadeOut();
   }
-  var sendable = {
-    filter: {
-      category: $('#q_category_id_eq').find(":selected").val(),
-      status: $('#q_status_eq').find(":selected").val()
-    }
-  }
-  $.ajax({
-    type: 'get',
-    url: $(this).parent().attr('action'),
-    dataType: 'script',
-    data: sendable
-  })
+}
+
+$(document).on('click', '#user-show-block #q_category_id_eq, #user-show-block #q_ad_type_eq', function(e) {
+  changeTags();
+  sendFilterThroughAjax($(this).parent().attr('action'), 'get');
+})
+
+$(document).on('click', '#home-index-block #q_category_id_eq, #home-index-block #q_ad_type_eq', function(e) {
+  changeTags();
+  sendFilterThroughAjax($(this).parent().attr('action'), 'get');
 })

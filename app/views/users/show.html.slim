@@ -7,7 +7,7 @@
     br
     = link_to "New advert", new_user_advert_path(@user)
 
-.filter-block
+.filter-block#user-show-block
   a.search-filter-link
     | Parameters
     span.caret
@@ -15,11 +15,11 @@
       = search_form_for @q, url: current_user, method: :get, remote: true, class: 'navbar-form navbar-left' do |f|
         = f.select :category_id_eq, options_from_collection_for_select(Category.all, :id, :title, @q.category_id_eq), {include_blank: 'Select category... '}
         br
-        = f.select :status_eq, options_from_collection_for_select(Advert.statuses, 'second', 'first', @q.status_eq), {include_blank: 'Select status... '}
+        = f.select :ad_type_eq, options_from_collection_for_select(Advert.ad_types, 'second', 'first', @q.ad_type_eq), {include_blank: 'Select type... '}
   .tag-container
     a#category-tag
       | Category
-    a#status-tag
+    a#ad_type-tag
       | Status
 
 br

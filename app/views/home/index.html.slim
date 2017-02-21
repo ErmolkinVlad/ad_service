@@ -1,17 +1,24 @@
 - if flash[:notice]
   .notice= flash[:notice]
 
-.row
-  .col-md-2.category-area
-    ul.vertical
-      li.category-list-item.active-category-item data-id=''
-        | All
-      - @categories.each do |category|
-        = render category
-  .col-md-10
-    .container.my-container
-      ul.list-group#home-advert-list
-          = render @adverts
+.filter-block#home-index-block
+  a.search-filter-link
+    | Parameters
+    span.caret
+    .search-filter-form
+      = search_form_for @q, url: root_path, method: :get, remote: true, class: 'navbar-form navbar-left' do |f|
+        = f.select :category_id_eq, options_from_collection_for_select(Category.all, :id, :title, @q.category_id_eq), {include_blank: 'Select category... '}
+        br
+        = f.select :ad_type_eq, options_from_collection_for_select(Advert.ad_types, 'second', 'first', @q.ad_type_eq), {include_blank: 'Select type... '}
+  .tag-container
+    a#category-tag
+      | Category
+    a#ad_type-tag
+      | Status
+
+.container.my-container
+  ul.list-group#home-advert-list
+      = render @adverts
 
 #home-pagination-nav
   - if @adverts.present?

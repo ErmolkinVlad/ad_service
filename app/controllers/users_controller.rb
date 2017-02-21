@@ -2,8 +2,8 @@ class UsersController < ApplicationController
   def show
     @user = current_user
     category = params[:filter].try(:fetch, :category)
-    status = params[:filter].try(:fetch, :status)
-    @adverts = @user.adverts.search(category_id_eq: category, status_eq: status).result().page params[:page]
+    status = params[:filter].try(:fetch, :ad_type)
+    @adverts = @user.adverts.search(category_id_eq: category, ad_type_eq: status).result().page params[:page]
     authorize @user
     respond_to do |format|
       format.html
