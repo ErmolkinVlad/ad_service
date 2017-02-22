@@ -12,11 +12,17 @@
       p
         h3
           = advert.status
-    = button_to 'Show', admin_advert_path(advert.user, advert), method: :get, form_class: 'show-form'
 
     .button-group role='group' 
       button.btn.btn-success#accept-button type='button' data-text='accept' 
         | Accept
       button.btn.btn-danger#reject-button type='button' data-text='reject'
         | Reject
+      .comment-container data-comment-container-id='#{advert.id}'
+        = text_area(:log, :comment, cols: 40, rows: 4, class: 'comment-field', placeholder: 'Write comment...')
+        button#comment_send type='button' disabled="disabled"
+          | Send
       input#control-hidden-status type='hidden' data-id="#{advert.id}" data-controller='#{admin_advert_path(advert)}'
+    .button-container
+      = button_to 'History',  user_advert_history_path(advert.user, advert), method: :get, form_class: 'history-form'
+      = button_to 'Show', admin_advert_path(advert.user, advert), method: :get, form_class: 'show-form'

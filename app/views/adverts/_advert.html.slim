@@ -18,7 +18,6 @@ li data-advert-id='#{advert.id}'
         p
           h4
             = advert.user.email
-      = button_to 'Show', [advert.user, advert], method: :get, form_class: 'show-form'
       .buttons-container
         - if policy(advert).edit?
           = button_to 'Edit', edit_user_advert_path(advert.user, advert), method: :get, form_class: 'edit-advert-form'
@@ -29,3 +28,6 @@ li data-advert-id='#{advert.id}'
               = link_to 'Archive', user_advert_archive_path(current_user, advert), method: :post, remote: true, class: 'btn'
             #status_moderated data-moderate-id='#{advert.id}'
               = link_to 'Submit', user_advert_moderate_path(current_user, advert), method: :post, remote: true, class: 'btn'
+      .button-container
+        = button_to 'History',  user_advert_history_path(advert.user, advert), method: :get, form_class: 'history-form'
+        = button_to 'Show', admin_advert_path(advert.user, advert), method: :get, form_class: 'show-form'

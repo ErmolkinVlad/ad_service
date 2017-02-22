@@ -46,10 +46,14 @@
   width: 60%;
 }
 
-.show-form {
+.button-container {
   position: absolute;
   bottom: 5px;
   right: 5px;
+}
+
+.show-form, .history-form {
+  display: inline-block;
 }
 
 .edit-button {

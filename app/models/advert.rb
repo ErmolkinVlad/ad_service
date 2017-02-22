@@ -14,6 +14,7 @@ class Advert < ApplicationRecord
   belongs_to :user
   belongs_to :category
 
+  has_many :logs, dependent: :destroy
   has_many :images, dependent: :destroy
   accepts_nested_attributes_for :images
 
@@ -53,6 +54,15 @@ class Advert < ApplicationRecord
         advert.archive!
         puts "#{Time.now} | #{advert.title} - Success!"
       end
+    end
+  end
+
+  def create_log(modifier, comment = nil)
+    time = DateTime.now
+    prev_status = self.paper_trail.previous_version.status
+    new_status = self.status
+    if prev_status != new_status
+      self.logs.create(user_id: modifier.id, time: time, prev_status: prev_status, new_status: new_status, comment: comment)
     end
   end
 

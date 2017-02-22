@@ -15,7 +15,6 @@ class AdvertsController < ApplicationController
   end
 
   def edit
-    @statuses = statuses_for_select
     authorize @advert
   end
 
@@ -34,6 +33,7 @@ class AdvertsController < ApplicationController
   def update
     if @advert.update(advert_params)
       @advert.refresh!
+      @advert.create_log(@advert.user)
       redirect_to session[:my_previous_url]
     else
       render action: 'edit'
@@ -50,6 +50,7 @@ class AdvertsController < ApplicationController
 
   def make_archived
     @advert.archive!
+    @advert.create_log(@advert.user)
     respond_to do |format|
       format.js {}
     end
@@ -57,9 +58,14 @@ class AdvertsController < ApplicationController
 
   def make_moderated
     @advert.moderate!
+    @advert.create_log(@advert.user)
     respond_to do |format|
       format.js {}
     end
+  end
+
+  def history
+    @logs = @advert.logs
   end
 
   private
@@ -81,14 +87,6 @@ class AdvertsController < ApplicationController
     params[:images]['body'].each do |a|
       @advert.images.create!(body: a)
     end
-  end
-
-  def statuses_for_select
-    statuses = @advert.aasm.states(permitted: true).map(&:name)
-    statuses -= [:published, :canceled] unless @user.admin?
-    statuses -= [:recent]
-    statuses << @advert.status
-    statuses
   end
 
   def advert_params

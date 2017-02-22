@@ -22,3 +22,16 @@
   background-color: #5cb85c !important;
   color: white !important;
 }
+
+.comment-container {
+  display: none;
+}
+
+#comment_send:disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+
+  /*Button disabled - CSS color class*/
+  color: #c0c0c0;
+  background-color: #ffffff;;
+}

@@ -1,0 +1,27 @@
+table.table
+  caption
+    | History of #{@advert.title} advert.
+  tr
+    th
+      | Modifier
+    th
+      | When
+    th
+      | From
+    th
+      | To
+    th
+      | Comment
+  - @logs.each do |log|
+    tr
+      td
+        = log.user.email
+      td
+        = log.time
+      td
+        = log.prev_status
+      td
+        = log.new_status
+      td
+        = log.comment
+     

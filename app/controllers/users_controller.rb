@@ -3,7 +3,9 @@ class UsersController < ApplicationController
     @user = current_user
     category = params[:filter].try(:fetch, :category)
     status = params[:filter].try(:fetch, :ad_type)
-    @adverts = @user.adverts.search(category_id_eq: category, ad_type_eq: status).result().page params[:page]
+    @q = @user.adverts.search(category_id_eq: category, ad_type_eq: status)
+    @q.sorts = 'created_at asc'
+    @adverts = @q.result().page params[:page]
     authorize @user
     respond_to do |format|
       format.html

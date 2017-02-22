@@ -1,31 +1,51 @@
-$(document).on('turbolinks:load', function() {
-  $('#accept-button, #reject-button').click(function(e) {
-    var controller = $('#control-hidden-status').attr('data-controller')
-    var data = {
-      advert: {
-        status: ''
-      }
+$(document).on('click', '#accept-button', function(e) {
+  var controller = $(e.target).parent().find('#control-hidden-status').attr('data-controller');
+  var data = {
+    advert: {
+      status: 'published'
     }
-    if($(e.target).attr('data-text') == 'accept') {
-      data.advert.status = 'published'
-      throughAjax(data, controller, 'PUT')
-    } else if($(e.target).attr('data-text') == 'reject') {
-      data.advert.status = 'canceled'
-      throughAjax(data, controller, 'PUT')
-    }
-  })
-  
-  function throughAjax(sendable, controller, method) {
-    $.ajax({
-      type:method, 
-      data:sendable, 
-      url:controller,
-      dataType:'json'
-    }).done(function(){
-      window.location.reload();
-    })
+  }
+  throughAjax(data, controller, 'PUT')
+})
+
+$(document).on('click', '#reject-button', function(e) {
+  $(e.target).parent().find('.comment-container').fadeIn();
+})
+
+$(document).on('keyup', '.comment-field', function(e) {
+  if ($(e.target).val()) {
+    $(e.target).parent().find('#comment_send').attr('disabled' , false);
+  } else {
+    $(e.target).parent().find('#comment_send').attr('disabled' , true);
   }
 })
+
+$(document).on('click', '#comment_send', function(e) {
+  var text = $(e.target).parent().find('.comment-field').val();
+  var controller = $(e.target).closest('.button-group').find('#control-hidden-status').attr('data-controller');
+  var data = {
+    advert: {
+      status: 'canceled'
+    }, 
+    log: {
+      comment: text
+    }
+  }
+  throughAjax(data, controller, 'PUT');
+})
+
+  
+
+function throughAjax(sendable, controller, method) {
+  $.ajax({
+    type:method, 
+    data:sendable, 
+    url:controller,
+    dataType:'json'
+  }).done(function(){
+    window.location.reload();
+  })
+}
 
 $(document).on('turbolinks:load', setStatuses);
 

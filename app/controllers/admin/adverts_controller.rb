@@ -15,6 +15,8 @@ module Admin
 
     def update
       @advert.update(advert_params)
+      comment = params[:log].try(:fetch, :comment)
+      @advert.create_log(current_user, comment)
     end
 
     private
