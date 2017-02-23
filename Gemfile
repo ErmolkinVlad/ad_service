@@ -69,7 +69,7 @@ gem 'autoprefixer-rails'
 gem 'toastr-rails'
 
 gem 'cloudinary', '1.1.0'
-gem 'carrierwave', '~> 1.0'
+gem 'carrierwave', '0.10.0'
 
 gem 'aasm', '4.0'
 

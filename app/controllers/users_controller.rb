@@ -19,6 +19,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+    puts params[:avatar]
     @user.avatar = params[:avatar]
     @user.save!
   end

@@ -30,4 +30,4 @@ li data-advert-id='#{advert.id}'
               = link_to 'Submit', user_advert_moderate_path(current_user, advert), method: :post, remote: true, class: 'btn'
       .button-container
         = button_to 'History',  user_advert_history_path(advert.user, advert), method: :get, form_class: 'history-form'
-        = button_to 'Show', admin_advert_path(advert.user, advert), method: :get, form_class: 'show-form'
+        = button_to 'Show', user_advert_path(advert.user, advert), method: :get, form_class: 'show-form'

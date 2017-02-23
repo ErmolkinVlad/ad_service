@@ -25,4 +25,4 @@
       input#control-hidden-status type='hidden' data-id="#{advert.id}" data-controller='#{admin_advert_path(advert)}'
     .button-container
       = button_to 'History',  user_advert_history_path(advert.user, advert), method: :get, form_class: 'history-form'
-      = button_to 'Show', admin_advert_path(advert.user, advert), method: :get, form_class: 'show-form'
+      = button_to 'Show', admin_advert_path(advert), method: :get, form_class: 'show-form'

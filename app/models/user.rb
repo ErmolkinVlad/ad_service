@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  attr_accessor :avatar
   enum role: [:user, :admin]
 
   has_many :adverts
@@ -16,27 +17,29 @@ class User < ApplicationRecord
   end
 
   def self.find_for_oauth(auth)
-    # Get the identity and user if they exist
     identity = Identity.find_for_oauth(auth)
     user = identity.user
-    
-    # Create the user if needed
+
     if user.nil?
       email = auth.info.email
+      image = auth.info.image
       user = User.where(email: email).first if email
+      if user
+        if image.present?
+          user.update_attribute(:remote_avatar_url, image)
+        end
+      end
 
       # Create the user if it's a new registration
       if user.nil?
         user = User.new(
-          email: email,
-          password: Devise.friendly_token[0,20]
-        )
-        puts user.inspect
+        email: email,
+        password: Devise.friendly_token[0,20],
+        remote_avatar_url: image.to_s)
         user.save!
       end
     end
 
-    # Associate the identity with the user if needed
     if identity.user != user
       identity.user = user
       identity.save!
