@@ -19,16 +19,11 @@ class User < ApplicationRecord
   def self.find_for_oauth(auth)
     identity = Identity.find_for_oauth(auth)
     user = identity.user
+    image = auth.info.image
 
     if user.nil?
       email = auth.info.email
-      image = auth.info.image
       user = User.where(email: email).first if email
-      if user
-        if image.present?
-          user.update_attribute(:remote_avatar_url, image)
-        end
-      end
 
       # Create the user if it's a new registration
       if user.nil?
@@ -38,6 +33,10 @@ class User < ApplicationRecord
         remote_avatar_url: image.to_s)
         user.save!
       end
+    end
+
+    if image.present?
+      user.update_attribute(:remote_avatar_url, image)
     end
 
     if identity.user != user
