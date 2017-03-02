@@ -50,11 +50,13 @@ class Advert < ApplicationRecord
     yesterday = Time.zone.now.ago(1.day)
     @adverts = Advert.all.select { |ad| ad.published? }
     @adverts.each do |advert|
-      if advert.versions.last.changeset['updated_at'][1] < yesterday
+      if advert.logs.last.time < yesterday
         advert.archive!
+        advert.create_log(advert.user, 'Auto set after 1 day in publihed.')
         puts "#{Time.now} | #{advert.title} - Success!"
       end
     end
+    puts "#{Time.now} | Done!"
   end
 
   def create_log(modifier, comment = nil)
