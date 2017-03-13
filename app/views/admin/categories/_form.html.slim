@@ -1,4 +1,4 @@
 = simple_form_for([:admin, category], remote: true) do |f|
-  = f.input :title, inline_label: 'Title...', label: false, input_html: { class: 'input-title' }
+  = f.input :name, inline_label: 'Title...', label: false, input_html: { class: 'input-title' }
   = button_tag type: 'submit', id: :submit_category_button
     span.glyphicon.glyphicon-ok

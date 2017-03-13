@@ -1,5 +1,6 @@
 = advert_avatar(@advert)
-= link_to "", edit_user_advert_path(@advert.user, @advert), class: 'edit-button glyphicon glyphicon-option-vertical'
+- if policy(@advert).edit?
+  = link_to "", edit_user_advert_path(@advert.user, @advert), class: 'edit-button glyphicon glyphicon-option-vertical'
 h1.inline-element.title = @advert.title
 h3 = @advert.description
 h3 = @advert.status

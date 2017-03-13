@@ -1,14 +1,13 @@
-.dropdown.sort-button
-  button.dropdown-toggle data-toggle="dropdown" type="button" 
-    | Sort by
-    span.caret
-  ul.dropdown-menu
-    li
-      = sort_link @q, :price
-    li
-      = sort_link @q, :created_at
-
 - if @adverts.present?
+  .dropdown.sort-button
+    button.dropdown-toggle data-toggle="dropdown" type="button" 
+      | Sort by
+      span.caret
+    ul.dropdown-menu
+      li
+        = sort_link @q, :price
+      li
+        = sort_link @q, :created_at
   h3
     = "Results for \"#{@search_phrase}\":"
   ul.list-group
