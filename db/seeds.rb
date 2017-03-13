@@ -7,10 +7,10 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 categories = Category.create([
-                               {title: 'Auto'},
-                               {title: 'Wear'},
-                               {title: 'Real estate'},
-                               {title: 'Sport inventory'},
+                               {name: 'Auto'},
+                               {name: 'Wear'},
+                               {name: 'Real estate'},
+                               {name: 'Sport inventory'},
                               ])
 
 users = User.create([

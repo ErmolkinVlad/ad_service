@@ -1,5 +1,5 @@
 class Advert < ApplicationRecord
-  paginates_per 2
+  paginates_per 10
 
   include AASM
   has_paper_trail
@@ -61,7 +61,7 @@ class Advert < ApplicationRecord
 
   def create_log(modifier, comment = nil)
     time = DateTime.now
-    prev_status = self.paper_trail.previous_version.status
+    prev_status = self.paper_trail.previous_version.try(:status) || 'recent'
     new_status = self.status
     if prev_status != new_status
       self.logs.create(user_id: modifier.id, time: time, prev_status: prev_status, new_status: new_status, comment: comment)

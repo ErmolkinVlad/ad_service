@@ -5,6 +5,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+ruby '2.4.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.1'
@@ -36,9 +37,28 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+group :development, :test, :production do
+  gem 'aasm'
+  gem 'whenever', require: false
+end
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
+  gem 'rspec-rails', '~> 3.5'
+  gem 'capybara', '~> 2.5'
+  gem 'factory_girl_rails', '~> 4.5.0'
+  gem 'faker', '~> 1.6.1'
+  gem 'database_cleaner'
+  gem 'omniauth'
+  gem 'omniauth-facebook'
+  gem 'omniauth-vkontakte'
+  gem 'omniauth-twitter'
+end
+
+group :test do
+  gem 'shoulda-matchers', :require => false
+  gem 'rails-controller-testing'
 end
 
 group :development do
@@ -71,19 +91,10 @@ gem 'toastr-rails'
 gem 'cloudinary', '1.1.0'
 gem 'carrierwave', '0.10.0'
 
-gem 'aasm', '4.0'
-
 gem 'jquery-ui-rails'
-
-gem 'whenever', require: false
 
 gem 'paper_trail'
 
 gem 'ransack'
 
 gem 'kaminari'
-
-gem 'omniauth'
-gem 'omniauth-facebook'
-gem 'omniauth-vkontakte'
-gem 'omniauth-twitter'

@@ -1,5 +1,6 @@
 module Admin
   class AdvertsController < ApplicationController
+    before_action :authenticate_user!
     before_action :set_advert, only: [:show, :update]
 
     def index
