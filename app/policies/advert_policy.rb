@@ -7,15 +7,11 @@ class AdvertPolicy
   end
 
   def new?
-    !@user.nil?
+    User.exists?(@user.id) && @user == @advert.user
   end
 
   def create?
     new?
-  end
-
-  def show?
-    !@user.nil?
   end
 
   def edit?
@@ -28,5 +24,9 @@ class AdvertPolicy
 
   def destroy?
     false
+  end
+
+  def history?
+    @advert.user == @user || @user.admin?
   end
 end

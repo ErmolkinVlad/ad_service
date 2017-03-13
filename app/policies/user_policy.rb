@@ -2,12 +2,12 @@ class UserPolicy
   attr_reader :user, :record
 
   def initialize(user, record)
-    @user = user
+    @user = user || User.new
     @record = record
   end
 
   def show?
-    @user && @user == @record || @user.admin?
+    @user == @record || @user.admin?
   end
 
   def admin_index?
