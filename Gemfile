@@ -40,6 +40,10 @@ gem 'jbuilder', '~> 2.5'
 group :development, :test, :production do
   gem 'aasm'
   gem 'whenever', require: false
+  gem 'omniauth'
+  gem 'omniauth-facebook'
+  gem 'omniauth-vkontakte'
+  gem 'omniauth-twitter'
 end
 
 group :development, :test do
@@ -50,10 +54,6 @@ group :development, :test do
   gem 'factory_girl_rails', '~> 4.5.0'
   gem 'faker', '~> 1.6.1'
   gem 'database_cleaner'
-  gem 'omniauth'
-  gem 'omniauth-facebook'
-  gem 'omniauth-vkontakte'
-  gem 'omniauth-twitter'
 end
 
 group :test do
