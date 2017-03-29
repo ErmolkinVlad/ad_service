@@ -6,7 +6,7 @@ module Admin
     def index
       @categories = Category.all
       @category = Category.new
-      @adverts = Advert.where(status: 'moderated')
+      @adverts = Advert.moderated
       @users = User.all
       authorize [:admin, Advert]
     end

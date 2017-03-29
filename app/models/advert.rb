@@ -11,6 +11,10 @@ class Advert < ApplicationRecord
   validates :category_id, presence: true
   validates :ad_type, presence: true
 
+  scope :published, -> { where(status: :published) }
+  scope :moderated, -> { where(status: :moderated) }
+  scope :admin_available, -> { where status: [:moderated, :published, :canceled] }
+
   belongs_to :user
   belongs_to :category
 
