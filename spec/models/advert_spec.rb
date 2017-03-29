@@ -18,6 +18,26 @@ RSpec.describe Advert, type: :model do
     end
   end
 
+  describe 'scopes' do
+    it 'returns all published adverts' do
+      5.times { FactoryGirl.create(:advert, status: :published) }
+      expect(Advert.published.count).to eql(5)
+    end
+
+    it 'returns all admin_available adverts' do
+      2.times { FactoryGirl.create(:advert, status: :published) }
+      2.times { FactoryGirl.create(:advert, status: :canceled) }
+      2.times { FactoryGirl.create(:advert, status: :moderated) }
+      2.times { FactoryGirl.create(:advert, status: :archived) }      
+      expect(Advert.admin_available.count).to eql(6)
+    end
+
+    it 'returns all moderated adverts' do
+      5.times { FactoryGirl.create(:advert, status: :moderated) }
+      expect(Advert.moderated.count).to eql(5)
+    end
+  end
+
   describe '#create_log' do
     context 'when prev and current statuses are different' do
       it 'create log' do

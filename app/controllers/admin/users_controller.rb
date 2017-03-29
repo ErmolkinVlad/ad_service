@@ -4,7 +4,7 @@ module Admin
     before_action :set_user, only: [:show]
 
     def show
-      @adverts = @user.adverts.where(status: [:moderated, :published, :canceled]).page params[:page]
+      @adverts = @user.adverts.admin_available.page params[:page]
       authorize [:admin, User]
     end
 

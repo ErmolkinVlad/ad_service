@@ -23,7 +23,7 @@ class User < ApplicationRecord
 
     if user.nil?
       email = auth.info.email
-      user = User.where(email: email).first if email
+      user = User.find_by_email(email) if email
 
       # Create the user if it's a new registration
       if user.nil?
